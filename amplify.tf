@@ -1,6 +1,6 @@
 resource "aws_amplify_app" "my-amplify-app" {
   name         = "wildrydes-app"
-  repository   = "https://github.com/clahi/serverless-web-app-terraform.git"
+  repository   = "https://github.com/clahi/serverless-web-app-terraform"
   access_token = var.access-token
 
   # The default rewrites and redirects added by the Amplify Console.
@@ -25,15 +25,13 @@ resource "aws_amplify_app" "my-amplify-app" {
   }
 }
 
-resource "aws_amplify_branch" "main" {
+resource "aws_amplify_branch" "master" {
   app_id      = aws_amplify_app.my-amplify-app.id
-  branch_name = var.branch_name
+  branch_name = "main"
 
   stage = "PRODUCTION"
-}
 
-resource "aws_amplify_webhook" "main" {
-  app_id      = aws_amplify_app.my-amplify-app.id
-  branch_name = aws_amplify_branch.main.branch_name
-  description = "triggermaster"
+  environment_variables = {
+    "ENV" = "production"
+  }
 }
