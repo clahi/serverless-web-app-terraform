@@ -18,3 +18,7 @@ output "user_pool_id" {
 output "user_pool_client_id" {
   value = aws_cognito_user_pool_client.WildRydesWebApp.id
 }
+
+output "dynamodb_arn" {
+  value = aws_dynamodb_table.Rides.arn
+}
