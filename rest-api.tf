@@ -51,8 +51,9 @@ resource "aws_api_gateway_integration" "lambda_integration" {
   resource_id             = aws_api_gateway_resource.ride.id
   http_method             = aws_api_gateway_method.post.http_method
   integration_http_method = "POST"
-  type                    = "AWS"
+  type                    = "AWS_PROXY"
   uri                     = aws_lambda_function.RequestUnicorn.invoke_arn
+  
 }
 
 resource "aws_api_gateway_integration_response" "post" {
