@@ -28,11 +28,11 @@ resource "aws_iam_role" "WildRydesLambda" {
       "Version" : "2012-10-17",
       "Statement" : [
         {
-			"Action": "dynamodb:PutItem",
-			"Effect": "Allow",
-			"Resource": "arn:aws:dynamodb:us-east-1:905418154970:table/Rides",
-			"Sid": "VisualEditor0"
-		}
+          "Sid" : "VisualEditor0",
+          "Effect" : "Allow",
+          "Action" : "dynamodb:PutItem",
+          "Resource" : aws_dynamodb_table.Rides.arn
+        }
       ]
     })
 
