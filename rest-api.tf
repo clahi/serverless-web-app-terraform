@@ -79,7 +79,7 @@ resource "aws_api_gateway_method" "options" {
   resource_id   = aws_api_gateway_resource.ride.id
   http_method   = "OPTIONS"
   authorization = "NONE"
-#   authorizer_id = aws_api_gateway_authorizer.WildRydes.id
+  #   authorizer_id = aws_api_gateway_authorizer.WildRydes.id
 }
 
 resource "aws_api_gateway_integration" "options_integration" {
@@ -114,7 +114,7 @@ resource "aws_api_gateway_integration_response" "options_integration_response" {
 
   # cors
   response_parameters = {
-    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token'",
+    "method.response.header.Access-Control-Allow-Headers" = "'Content-Type,Authorization,X-Amz-Date,X-Api-Key,X-Amz-Security-Token'",
     "method.response.header.Access-Control-Allow-Methods" = "'GET,OPTIONS,POST,PUT'",
     "method.response.header.Access-Control-Allow-Origin"  = "'*'"
   }
