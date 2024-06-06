@@ -31,7 +31,7 @@ resource "aws_iam_role" "WildRydesLambda" {
           "Sid" : "VisualEditor0",
           "Effect" : "Allow",
           "Action" : "dynamodb:PutItem",
-          "Resource" : "arn:aws:dynamodb:us-east-1:905418154970:table/Rides"
+          "Resource" : "arn:aws:dynamodb:us-east-1:891377375635:table/Rides"
         }
       ]
     })
