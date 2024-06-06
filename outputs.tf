@@ -22,3 +22,7 @@ output "user_pool_client_id" {
 output "dynamodb_arn" {
   value = aws_dynamodb_table.Rides.arn
 }
+
+output "function_name" {
+  value = aws_lambda_function.RequestUnicorn.function_name
+}
