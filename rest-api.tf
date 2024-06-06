@@ -24,7 +24,7 @@ resource "aws_api_gateway_authorizer" "WildRydes" {
   provider_arns = data.aws_cognito_user_pools.this.arns
 }
 
-resource "aws_api_gateway_method" "POST" {
+resource "aws_api_gateway_method" "post" {
   rest_api_id   = aws_api_gateway_rest_api.WildRydes.id
   resource_id   = aws_api_gateway_resource.ride.id
   http_method   = "POST"
@@ -36,16 +36,16 @@ resource "aws_api_gateway_method" "POST" {
 resource "aws_api_gateway_integration" "lambda_integration" {
   rest_api_id             = aws_api_gateway_rest_api.WildRydes.id
   resource_id             = aws_api_gateway_resource.ride.id
-  http_method             = aws_api_gateway_method.POST.http_method
+  http_method             = aws_api_gateway_method.post.http_method
   integration_http_method = "POST"
   type                    = "AWS"
   uri                     = aws_lambda_function.RequestUnicorn.invoke_arn
 }
 
-resource "aws_api_gateway_method_response" "proxy" {
+resource "aws_api_gateway_method_response" "post" {
   rest_api_id = aws_api_gateway_rest_api.WildRydes.id
   resource_id = aws_api_gateway_resource.ride.id
-  http_method = aws_api_gateway_method.POST.http_method
+  http_method = aws_api_gateway_method.post.http_method
   status_code = "200"
 
   response_parameters = {
@@ -55,11 +55,11 @@ resource "aws_api_gateway_method_response" "proxy" {
   }
 }
 
-resource "aws_api_gateway_integration_response" "proxy" {
+resource "aws_api_gateway_integration_response" "post" {
   rest_api_id = aws_api_gateway_rest_api.WildRydes.id
   resource_id = aws_api_gateway_resource.ride.id
-  http_method = aws_api_gateway_method.POST.http_method
-  status_code = aws_api_gateway_method_response.proxy.status_code
+  http_method = aws_api_gateway_method.post.http_method
+  status_code = aws_api_gateway_method_response.post.status_code
 
   # cors
   response_parameters = {
@@ -69,7 +69,7 @@ resource "aws_api_gateway_integration_response" "proxy" {
   }
 
   depends_on = [
-    aws_api_gateway_method.POST,
+    aws_api_gateway_method.post,
     aws_api_gateway_integration.lambda_integration
   ]
 }

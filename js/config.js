@@ -1,7 +1,7 @@
 window._config = {
     cognito: {
-        userPoolId: 'us-east-1_jRPGGXYIX', // e.g. us-east-2_uXboG5pAb
-        userPoolClientId: '7iemvf6ud7rsavfq76cdlhmbk0', // e.g. 25ddkmj4v6hfsfvruhpfi7n4hv
+        userPoolId: aws_cognito_user_pool.WildRydes.id, // e.g. us-east-2_uXboG5pAb
+        userPoolClientId: aws_amplify_app.my-amplify-app.id, // e.g. 25ddkmj4v6hfsfvruhpfi7n4hv
         region: 'us-east-1' // e.g. us-east-2
     },
     api: {
